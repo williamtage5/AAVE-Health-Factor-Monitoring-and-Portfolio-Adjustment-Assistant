@@ -25,42 +25,38 @@ It synthesizes macro-systemic fragility (Systemic Risk Indicator, $R_I$) with mi
 
 ## 📂 Project Modules & Code Repositories
 
-This project is modularized into four key components. Below are the links to the source code for each module:
+This project is modularized into four key components. Below are the direct links to the source code for each module:
 
-### 1\. Data Engineering & Subgraph Indexing
+### 1. Data Engineering & Subgraph Indexing
+🔗 **Repository:** [williamtage5/AAVE-target-customers-Health-Factor-and-Reserves-collection-from-subgraph](https://github.com/williamtage5/AAVE-target-customers-Health-Factor-and-Reserves-collection-from-subgraph)
 
-**Repository:** [williamtage5/AAVE-target-customers-Health-Factor-and-Reserves-collection-from-subgraph](https://www.google.com/search?q=https://github.com/williamtage5/AAVE-target-customers-Health-Factor-and-Reserves-collection-from-subgraph)
+* **Function:** Handles the retrieval of high-fidelity historical data.
+* **Tech Stack:** GraphQL, The Graph Protocol, Aave V3 Subgraph.
+* **Details:** Scrapes user reserve data, calculates historical Health Factors at target moments (N-1 block snapshots), and prepares datasets for the prediction models.
 
-  * **Function:** Handles the retrieval of high-fidelity historical data.
-  * **Tech Stack:** GraphQL, The Graph Protocol, Aave V3 Subgraph.
-  * **Details:** Scrapes user reserve data, calculates historical Health Factors at target moments (N-1 block snapshots), and prepares datasets for the prediction models.
+### 2. Off-Chain Strategy Engine
+🔗 **Repository:** [williamtage5/AAVE_Off-Chain_Portfolio_Adjustment_Engine](https://github.com/williamtage5/AAVE_Off-Chain_Portfolio_Adjustment_Engine)
 
-### 2\. Off-Chain Strategy Engine
+* **Function:** The "Brain" of the system.
+* **Tech Stack:** Python, PyTorch (LSTM), Scikit-learn (XGBoost).
+* **Details:**
+    * Implements the Price Prediction Models (LSTM/Transformer).
+    * Runs the **Judge Phase** logic (Risk Matrix classification).
+    * Executes the **Strategy Phase** (NMV Optimization) to generate the optimal action vector (e.g., "Repay 80% USDC, Supply 20% ETH").
 
-**Repository:** [williamtage5/AAVE\_Off-Chain\_Portfolio\_Adjustment\_Engine](https://www.google.com/search?q=https://github.com/williamtage5/AAVE_Off-Chain_Portfolio_Adjustment_Engine)
+### 3. The Bridge: Off-Chain to On-Chain Executor
+🔗 **Repository:** [williamtage5/onchain-offchain-executor](https://github.com/williamtage5/onchain-offchain-executor)
 
-  * **Function:** The "Brain" of the system.
-  * **Tech Stack:** Python, PyTorch (LSTM), Scikit-learn (XGBoost).
-  * **Details:**
-      * Implements the Price Prediction Models (LSTM/Transformer).
-      * Runs the **Judge Phase** logic (Risk Matrix classification).
-      * Executes the **Strategy Phase** (NMV Optimization) to generate the optimal action vector (e.g., "Repay 80% USDC, Supply 20% ETH").
+* **Function:** The secure gateway translating algorithmic decisions into blockchain transactions.
+* **Tech Stack:** Python (Web3.py), Solidity.
+* **Details:** A prototype script that takes the optimal allocation from the Engine, signs the transaction offline, and triggers the on-chain smart contract.
 
-### 3\. The Bridge: Off-Chain to On-Chain Executor
+### 4. On-Chain Contracts & Interaction (Sepolia)
+🔗 **Repository:** [adashima152/Interaction-with-Aave-Sepolia-Contracts](https://github.com/adashima152/Interaction-with-Aave-Sepolia-Contracts)
 
-**Repository:** [williamtage5/onchain-offchain-executor](https://www.google.com/search?q=https://github.com/williamtage5/onchain-offchain-executor)
-
-  * **Function:** The secure gateway translating algorithmic decisions into blockchain transactions.
-  * **Tech Stack:** Python (Web3.py), Solidity.
-  * **Details:** A prototype script that takes the optimal allocation from the Engine, signs the transaction offline, and triggers the on-chain smart contract.
-
-### 4\. On-Chain Contracts & Interaction (Sepolia)
-
-**Repository:** [adashima152/Interaction-with-Aave-Sepolia-Contracts](https://www.google.com/search?q=https://github.com/adashima152/Interaction-with-Aave-Sepolia-Contracts)
-
-  * **Function:** The execution layer on the testnet.
-  * **Tech Stack:** Solidity, Hardhat/Foundry, Aave V3 Contracts.
-  * **Details:** Contains the `Executor.sol` contract and scripts for interacting with Aave V3 on the Sepolia testnet. Validates core actions: Deposit, Borrow, Repay, and Withdraw.
+* **Function:** The execution layer on the testnet.
+* **Tech Stack:** Solidity, Hardhat/Foundry, Aave V3 Contracts.
+* **Details:** Contains the `Executor.sol` contract and scripts for interacting with Aave V3 on the Sepolia testnet. Validates core actions: Deposit, Borrow, Repay, and Withdraw.
 
 -----
 
